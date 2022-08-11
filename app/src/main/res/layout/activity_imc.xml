@@ -17,36 +17,22 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/imc_desc"
-            android:layout_marginBottom="40dp"
-            android:layout_marginHorizontal="30dp"/>
+            style="@style/TextViewForm"/>
 
         <EditText
             android:id="@+id/edit_imc_weight"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:hint="@string/weight"
-            android:inputType="number"
-            android:maxLength="3"
-            android:layout_marginHorizontal="30dp"
-            android:layout_marginBottom="40dp"/>
+            style="@style/EditTextForm"/>
 
         <EditText
             android:id="@+id/edit_imc_heigth"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:hint="@string/height"
-            android:inputType="number"
-            android:maxLength="3"
-            android:layout_marginHorizontal="30dp"
-            android:layout_marginBottom="40dp"/>
+            style="@style/EditTextForm"/>
 
         <Button
             android:id="@+id/btn_imc_send"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="30dp"
             android:text="@string/calc"
-            android:backgroundTint="@color/black" />
+            style="@style/ButtonForm" />
 
     </LinearLayout>
 
