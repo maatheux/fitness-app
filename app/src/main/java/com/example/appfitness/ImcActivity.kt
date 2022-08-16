@@ -1,5 +1,6 @@
 package com.example.appfitness
 
+import android.content.DialogInterface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -7,6 +8,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.annotation.StringRes
+import androidx.appcompat.app.AlertDialog
 import java.lang.Math.pow
 
 class ImcActivity : AppCompatActivity() {
@@ -32,7 +34,17 @@ class ImcActivity : AppCompatActivity() {
             Log.i("Values", "${String.format("%.1f", imcResult)}")
 
             val imcResponseId = imcResponse(imcResult)
-            Toast.makeText(this, imcResponseId, Toast.LENGTH_SHORT).show()
+
+            AlertDialog.Builder(this).apply {
+                setTitle(getString(R.string.imc_response, imcResult))
+                setMessage(imcResponseId)
+                setPositiveButton(android.R.string.ok) { dialog, which ->
+
+                }
+                create()
+                show()
+            }
+
 
         }
 
