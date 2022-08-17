@@ -8,25 +8,30 @@
     android:gravity="center"
     tools:context=".MainActivity">
 
-    <LinearLayout
-        android:id="@+id/btn_imc"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:paddingHorizontal="12dp"
-        android:paddingVertical="10dp"
-        android:background="@color/colorLigthGray">
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
-        <ImageView
-            android:src="@drawable/ic_baseline_wb_sunny_24"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+<!--    <LinearLayout-->
+<!--        android:id="@+id/btn_imc"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:orientation="vertical"-->
+<!--        android:paddingHorizontal="12dp"-->
+<!--        android:paddingVertical="10dp"-->
+<!--        android:background="@color/colorLigthGray">-->
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/label_imc"/>
+<!--        <ImageView-->
+<!--            android:src="@drawable/ic_baseline_wb_sunny_24"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content" />-->
 
-    </LinearLayout>
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="@string/label_imc"/>-->
+
+<!--    </LinearLayout>-->
 
 </LinearLayout>
