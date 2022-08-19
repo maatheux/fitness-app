@@ -11,7 +11,9 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_main"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        tools:listitem="@layout/main_item"
+        tools:itemCount="20"/>
 
 <!--    <LinearLayout-->
 <!--        android:id="@+id/btn_imc"-->
