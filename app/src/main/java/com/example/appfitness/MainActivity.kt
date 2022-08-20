@@ -6,6 +6,9 @@ import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageView
+import android.widget.LinearLayout
+import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
@@ -29,9 +32,9 @@ class MainActivity : AppCompatActivity() {
         mainItems.add(
             MainItem(
                 id = 1,
-                drawableId = R.drawable.ic_baseline_wb_sunny_24,
+                drawableId = R.drawable.ic_baseline_remove_red_eye_24,
                 textStringId = R.string.label_tmb,
-                colorId = Color.GREEN
+                colorId = Color.YELLOW
             )
         )
 
@@ -62,8 +65,13 @@ class MainActivity : AppCompatActivity() {
 
     private class MainViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(item: MainItem) {
-            val buttonTest: Button = itemView.findViewById(R.id.btn_item) // itemView é uma variavel de ViewHoleder que referencia o layout
-            buttonTest.setText(item.textStringId)
+            val itemContainerImc: LinearLayout = itemView as LinearLayout // itemView referencia ao proprio main_item
+            val itemImageIcon: ImageView = itemView.findViewById(R.id.item_img_icon)
+            val itemTextName: TextView = itemView.findViewById(R.id.item_txt_name)
+
+            itemContainerImc.setBackgroundColor(item.colorId)
+            itemImageIcon.setImageResource(item.drawableId)
+            itemTextName.setText(item.textStringId)
         }
     }
     // e a celula, ou o layout, em si
