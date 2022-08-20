@@ -9,6 +9,7 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
@@ -31,7 +32,7 @@ class MainActivity : AppCompatActivity() {
         )
         mainItems.add(
             MainItem(
-                id = 1,
+                id = 2,
                 drawableId = R.drawable.ic_baseline_remove_red_eye_24,
                 textStringId = R.string.label_tmb,
                 colorId = Color.YELLOW
@@ -41,7 +42,7 @@ class MainActivity : AppCompatActivity() {
         val adapter = MainAdapter(mainItems)
         rvMain = findViewById(R.id.rv_main)
         rvMain.adapter = adapter
-        rvMain.layoutManager = LinearLayoutManager(this)
+        rvMain.layoutManager = GridLayoutManager(this, 2)
 
 
     }
@@ -65,7 +66,7 @@ class MainActivity : AppCompatActivity() {
 
     private class MainViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(item: MainItem) {
-            val itemContainerImc: LinearLayout = itemView as LinearLayout // itemView referencia ao proprio main_item
+            val itemContainerImc: LinearLayout = itemView.findViewById(R.id.item_container_imc)
             val itemImageIcon: ImageView = itemView.findViewById(R.id.item_img_icon)
             val itemTextName: TextView = itemView.findViewById(R.id.item_txt_name)
 
