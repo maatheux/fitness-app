@@ -39,8 +39,7 @@ class MainActivity : AppCompatActivity() {
             )
         )
 
-        val adapter = MainAdapter(mainItems, object : OnItemClickListener {
-            override fun onClick(id: Int) {
+        val adapter = MainAdapter(mainItems) { id: Int ->
                 when(id) {
                     1 -> {
                         var intent = Intent(this@MainActivity, ImcActivity::class.java)
@@ -50,8 +49,7 @@ class MainActivity : AppCompatActivity() {
                         //
                     }
                 }
-            }
-        })
+        }
         rvMain = findViewById(R.id.rv_main)
         rvMain.adapter = adapter
         rvMain.layoutManager = GridLayoutManager(this, 2)
@@ -59,7 +57,7 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    private inner class MainAdapter(private val mainItems: List<MainItem>, private val onItemClickListener: OnItemClickListener) : RecyclerView.Adapter<MainAdapter.MainViewHolder>() {
+    private inner class MainAdapter(private val mainItems: List<MainItem>, private val onItemClickListener: (Int) -> Unit) : RecyclerView.Adapter<MainAdapter.MainViewHolder>() {
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainViewHolder {
             val view = layoutInflater.inflate(R.layout.main_item, parent, false)
             return MainViewHolder(view)
@@ -85,7 +83,7 @@ class MainActivity : AppCompatActivity() {
                 itemTextName.setText(item.textStringId)
 
                 itemContainerImc.setOnClickListener {
-                    onItemClickListener.onClick(item.id)
+                    onItemClickListener.invoke(item.id)
                 }
 
             }
