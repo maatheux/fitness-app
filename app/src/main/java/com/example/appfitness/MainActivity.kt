@@ -13,7 +13,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
-class MainActivity : AppCompatActivity(), OnItemClickListener {
+class MainActivity : AppCompatActivity() {
 
     private lateinit var rvMain: RecyclerView
 
@@ -39,24 +39,24 @@ class MainActivity : AppCompatActivity(), OnItemClickListener {
             )
         )
 
-        val adapter = MainAdapter(mainItems, this)
+        val adapter = MainAdapter(mainItems, object : OnItemClickListener {
+            override fun onClick(id: Int) {
+                when(id) {
+                    1 -> {
+                        var intent = Intent(this@MainActivity, ImcActivity::class.java)
+                        startActivity(intent)
+                    }
+                    2 -> {
+                        //
+                    }
+                }
+            }
+        })
         rvMain = findViewById(R.id.rv_main)
         rvMain.adapter = adapter
         rvMain.layoutManager = GridLayoutManager(this, 2)
 
 
-    }
-
-    override fun onClick(id: Int) {
-        when(id) {
-            1 -> {
-                var intent = Intent(this, ImcActivity::class.java)
-                startActivity(intent)
-            }
-            2 -> {
-                //
-            }
-        }
     }
 
     private inner class MainAdapter(private val mainItems: List<MainItem>, private val onItemClickListener: OnItemClickListener) : RecyclerView.Adapter<MainAdapter.MainViewHolder>() {
