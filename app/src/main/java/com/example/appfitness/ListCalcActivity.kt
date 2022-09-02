@@ -1,23 +1,28 @@
 package com.example.appfitness
 
-import android.content.Intent
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.appfitness.model.Calc
+import java.text.SimpleDateFormat
 import java.time.format.DateTimeFormatter
-import java.time.format.FormatStyle
+import java.util.*
 
 class ListCalcActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_list_calc)
+
+        val result = mutableListOf<Calc>()
+        val adapter = ListCalcAdapter(result)
+        val rvListCalc = findViewById<RecyclerView>(R.id.rvListCalc)
+        rvListCalc.adapter = adapter
+        rvListCalc.layoutManager = LinearLayoutManager(this)
 
         val type = intent?.extras?.getString("type") ?: throw IllegalStateException("type not found")
 
@@ -27,17 +32,15 @@ class ListCalcActivity : AppCompatActivity() {
             val response = dao.getRegisterByType(type)
 
             runOnUiThread {
-                val adapter = ListCalAdapter(response)
-                val rvListCalc = findViewById<RecyclerView>(R.id.rvListCalc)
-                rvListCalc.adapter = adapter
-                rvListCalc.layoutManager = LinearLayoutManager(this)
+                result.addAll(response)
+                adapter.notifyDataSetChanged()
             }
 
         }.start()
 
     }
 
-    private inner class ListCalAdapter(private val calcItems : List<Calc>) : RecyclerView.Adapter<ListCalAdapter.ListCalcViewHolder>() {
+    private inner class ListCalcAdapter(private val calcItems : List<Calc>) : RecyclerView.Adapter<ListCalcAdapter.ListCalcViewHolder>() {
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListCalcViewHolder {
             val view = layoutInflater.inflate(android.R.layout.simple_list_item_1, parent, false)
@@ -55,15 +58,13 @@ class ListCalcActivity : AppCompatActivity() {
 
         private inner class ListCalcViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
             fun bind(item: Calc) {
-                val textItem = itemView.findViewById<TextView>(android.R.id.text1)
+                val tv = itemView as TextView // como o itemview nao tem filho, o proprio itemview e o textview
 
-                val createdDate = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                    item.createdDate.toString().format(DateTimeFormatter.ofPattern("dd/mm/yyyy"))
-                } else {
-                    item.createdDate.toLocaleString()
-                }
+                val sdf = SimpleDateFormat("dd/MM/yyyy HH:mm", Locale("pt", "BR"))
+                val data = sdf.format(item.createdDate)
+                val res = item.res
 
-                textItem.text = "${item.id} - ${String.format("%.2f", item.res)} - $createdDate"
+                tv.text = getString(R.string.list_response, res, data)
 
             }
         }
