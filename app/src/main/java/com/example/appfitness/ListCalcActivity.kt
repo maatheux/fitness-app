@@ -61,6 +61,7 @@ class ListCalcActivity : AppCompatActivity() {
                 val tv = itemView as TextView // como o itemview nao tem filho, o proprio itemview e o textview
 
                 val sdf = SimpleDateFormat("dd/MM/yyyy HH:mm", Locale("pt", "BR"))
+                sdf.timeZone = TimeZone.getTimeZone("America/Sao_Paulo")
                 val data = sdf.format(item.createdDate)
                 val res = item.res
 
