@@ -49,7 +49,7 @@ class ListCalcActivity : AppCompatActivity() {
 
         override fun onBindViewHolder(holder: ListCalcViewHolder, position: Int) {
             val currentItem = calcItems[position]
-            if (currentItem.type == "imc") holder.bind(currentItem)
+            holder.bind(currentItem)
         }
 
         override fun getItemCount(): Int {
