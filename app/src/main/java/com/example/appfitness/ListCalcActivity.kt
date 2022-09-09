@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.appfitness.model.Calc
@@ -66,6 +67,7 @@ class ListCalcActivity : AppCompatActivity() {
                 val res = item.res
 
                 tv.text = getString(R.string.list_response, res, data)
+                tv.setTextColor(ContextCompat.getColor(this@ListCalcActivity, R.color.white))
 
             }
         }

@@ -25,17 +25,15 @@ class MainActivity : AppCompatActivity() {
         mainItems.add(
             MainItem(
                 id = 1,
-                drawableId = R.drawable.ic_baseline_wb_sunny_24,
-                textStringId = R.string.label_imc,
-                colorId = Color.GREEN
+                drawableId = R.drawable.ic_baseline_person_24,
+                textStringId = R.string.label_imc
             )
         )
         mainItems.add(
             MainItem(
                 id = 2,
-                drawableId = R.drawable.ic_baseline_remove_red_eye_24,
-                textStringId = R.string.label_tmb,
-                colorId = Color.YELLOW
+                drawableId = R.drawable.ic_baseline_directions_run_24,
+                textStringId = R.string.label_tmb
             )
         )
 
@@ -79,7 +77,6 @@ class MainActivity : AppCompatActivity() {
                 val itemImageIcon: ImageView = itemView.findViewById(R.id.item_img_icon)
                 val itemTextName: TextView = itemView.findViewById(R.id.item_txt_name)
 
-                itemContainerImc.setBackgroundColor(item.colorId)
                 itemImageIcon.setImageResource(item.drawableId)
                 itemTextName.setText(item.textStringId)
 

@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources >
+    <style name="activitiesBackground">
+        <item name="android:background">@drawable/main_activity_bg_gradient</item>
+    </style>
     <style name="TextViewForm">
         <item name="android:layout_marginBottom">40dp</item>
         <item name="android:layout_marginStart">30dp</item>
         <item name="android:layout_marginEnd">30dp</item>
+        <item name="android:textColor">@color/white</item>
     </style>
     <style name="EditTextForm">
         <item name="android:layout_width">match_parent</item>
@@ -13,17 +17,24 @@
         <item name="android:layout_marginBottom">40dp</item>
         <item name="android:layout_marginStart">30dp</item>
         <item name="android:layout_marginEnd">30dp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textColorHint">@color/white</item>
+        <item name="backgroundTint">@color/white</item>
     </style>
     <style name="ButtonForm">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginStart">30dp</item>
         <item name="android:layout_marginEnd">30dp</item>
-        <item name="android:backgroundTint">@color/black</item>
+        <item name="android:backgroundTint">@color/mainColor</item>
+        <item name="android:textColor">@color/white</item>
     </style>
     <style name="AutoTextViewForm" parent="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
         <item name="android:layout_marginBottom">40dp</item>
         <item name="android:layout_marginStart">30dp</item>
         <item name="android:layout_marginEnd">30dp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textColorHint">@color/white</item>
+        <item name="background">@color/white</item>
     </style>
 </resources>

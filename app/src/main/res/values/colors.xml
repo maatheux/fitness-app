@@ -8,4 +8,8 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="colorLigthGray">#E6E6E6</color>
+    <color name="mainColor">#ffc300</color>
+    <color name="mainActivityBtnPressed">#F4BA00</color>
+    <color name="mainDarkColor">#232526</color>
+    <color name="secondDarkColor">#333435</color>
 </resources>

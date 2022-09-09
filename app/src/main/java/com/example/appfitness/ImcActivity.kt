@@ -105,15 +105,15 @@ class ImcActivity : AppCompatActivity() {
 
     @StringRes
     private fun imcResponse(imc: Double): Int {
-        when (imc) {
-            in 0.0..15.0 -> return R.string.imc_severely_low_weight
-            in 15.1..16.0 -> return R.string.imc_very_low_weight
-            in 16.1..18.5 -> return R.string.imc_low_weight
-            in 18.6..25.0 -> return R.string.normal
-            in 25.1..30.0 -> return R.string.imc_high_weight
-            in 30.1..35.0 -> return R.string.imc_so_high_weight
-            in 35.1..40.0 -> return R.string.imc_severely_high_weight
-            else -> return R.string.imc_extreme_weight
+        return when (imc) {
+            in 0.0..15.0 -> R.string.imc_severely_low_weight
+            in 15.1..16.0 -> R.string.imc_very_low_weight
+            in 16.1..18.5 -> R.string.imc_low_weight
+            in 18.6..25.0 -> R.string.normal
+            in 25.1..30.0 -> R.string.imc_high_weight
+            in 30.1..35.0 -> R.string.imc_so_high_weight
+            in 35.1..40.0 -> R.string.imc_severely_high_weight
+            else -> R.string.imc_extreme_weight
         }
     }
 

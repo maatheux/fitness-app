@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    style="@style/activitiesBackground"
     tools:context=".ImcActivity">
 
     <LinearLayout
@@ -44,6 +45,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Frequência de exercícios"
+                android:background="@color/white"
                 android:inputType="none" />
 
         </com.google.android.material.textfield.TextInputLayout>
