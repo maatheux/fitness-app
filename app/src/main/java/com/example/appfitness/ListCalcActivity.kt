@@ -3,10 +3,13 @@ package com.example.appfitness
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
+import androidx.core.view.marginStart
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.appfitness.model.Calc
@@ -20,7 +23,16 @@ class ListCalcActivity : AppCompatActivity() {
         setContentView(R.layout.activity_list_calc)
 
         val result = mutableListOf<Calc>()
-        val adapter = ListCalcAdapter(result)
+        val adapter = ListCalcAdapter(result) { id: Int, res: Double ->
+            AlertDialog.Builder(this).apply {
+                setTitle(getString(R.string.resultOptionDialogTitle))
+                setMessage(getString(R.string.resultOptionDialogMessage, res))
+                setPositiveButton(R.string.editText) {dialog, which ->}
+                setNegativeButton(R.string.deleteText) {dialog, which ->}
+                create()
+                show()
+            }
+        }
         val rvListCalc = findViewById<RecyclerView>(R.id.rvListCalc)
         rvListCalc.adapter = adapter
         rvListCalc.layoutManager = LinearLayoutManager(this)
@@ -41,7 +53,7 @@ class ListCalcActivity : AppCompatActivity() {
 
     }
 
-    private inner class ListCalcAdapter(private val calcItems : List<Calc>) : RecyclerView.Adapter<ListCalcAdapter.ListCalcViewHolder>() {
+    private inner class ListCalcAdapter(private val calcItems : List<Calc>, private val onItemLongClickListener: (Int, Double) -> Unit ) : RecyclerView.Adapter<ListCalcAdapter.ListCalcViewHolder>() {
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListCalcViewHolder {
             val view = layoutInflater.inflate(android.R.layout.simple_list_item_1, parent, false)
@@ -68,6 +80,13 @@ class ListCalcActivity : AppCompatActivity() {
 
                 tv.text = getString(R.string.list_response, res, data)
                 tv.setTextColor(ContextCompat.getColor(this@ListCalcActivity, R.color.white))
+                tv.background = ContextCompat.getDrawable(this@ListCalcActivity, R.drawable.result_style_bg)
+
+                tv.setOnLongClickListener {
+                    onItemLongClickListener.invoke(item.id, item.res)
+                    return@setOnLongClickListener true
+                }
+
 
             }
         }

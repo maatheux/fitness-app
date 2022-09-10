@@ -26,4 +26,8 @@
     <string name="list_response">Resultado: %1$.2f, Data: %2$s</string>
     <string name="delete_message">Você realmente quer excluir o registro?</string>
     <string name="cancel">Cancelar</string>
+    <string name="resultOptionDialogTitle">O que você deseja realizar com esse registro?</string>
+    <string name="resultOptionDialogMessage">"Resultado: %1$.2f"</string>
+    <string name="editText">Editar</string>
+    <string name="deleteText">Deletar</string>
 </resources>

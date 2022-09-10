@@ -11,6 +11,7 @@
         android:id="@+id/rvListCalc"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:padding="10dp"
         tools:listitem="@android:layout/simple_list_item_1"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

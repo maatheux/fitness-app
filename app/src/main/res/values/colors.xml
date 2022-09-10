@@ -12,4 +12,5 @@
     <color name="mainActivityBtnPressed">#F4BA00</color>
     <color name="mainDarkColor">#232526</color>
     <color name="secondDarkColor">#333435</color>
+    <color name="resultPressedBgColor">#B2626363</color>
 </resources>
