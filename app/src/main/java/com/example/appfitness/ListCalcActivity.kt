@@ -1,5 +1,6 @@
 package com.example.appfitness
 
+import android.content.Intent
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -7,6 +8,7 @@ import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
 import androidx.core.view.marginStart
@@ -28,7 +30,19 @@ class ListCalcActivity : AppCompatActivity() {
                 setTitle(getString(R.string.resultOptionDialogTitle))
                 setMessage(getString(R.string.resultOptionDialogMessage, res))
                 setPositiveButton(R.string.editText) {dialog, which ->}
-                setNegativeButton(R.string.deleteText) {dialog, which ->}
+                setNegativeButton(R.string.deleteText) {dialog, which ->
+                    Thread {
+                        val app = application as App
+                        val dao = app.db.calcDao()
+                        dao.deleteRegister(id)
+
+                        runOnUiThread {
+//                            refreshActivity()
+                            goToMainActivity()
+                            Toast.makeText(this@ListCalcActivity, "Registro deletado!", Toast.LENGTH_SHORT).show()
+                        }
+                    }.start()
+                }
                 create()
                 show()
             }
@@ -51,6 +65,19 @@ class ListCalcActivity : AppCompatActivity() {
 
         }.start()
 
+    }
+
+    private fun refreshActivity() {
+        val thisIntent = Intent(this, ListCalcActivity::class.java)
+        finish()
+        overridePendingTransition(0, 0)
+        startActivity(thisIntent)
+        overridePendingTransition(0, 0)
+    }
+
+    private fun goToMainActivity() {
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
     }
 
     private inner class ListCalcAdapter(private val calcItems : List<Calc>, private val onItemLongClickListener: (Int, Double) -> Unit ) : RecyclerView.Adapter<ListCalcAdapter.ListCalcViewHolder>() {
