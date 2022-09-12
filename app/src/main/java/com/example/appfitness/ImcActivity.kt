@@ -16,6 +16,7 @@ import androidx.annotation.StringRes
 import androidx.appcompat.app.AlertDialog
 import com.example.appfitness.model.Calc
 import java.lang.Math.pow
+import java.util.*
 
 class ImcActivity : AppCompatActivity() {
 
@@ -49,8 +50,20 @@ class ImcActivity : AppCompatActivity() {
                 }
                 setNegativeButton(R.string.save) {dialog, wich ->
                     Thread {
+
+                        val isUpdate = intent?.extras?.getString("Is Update")
+                        val newId = intent?.extras?.getString("Id")
+
                         val app = application as App
                         val dao = app.db.calcDao()
+
+                        isUpdate?.let {
+                            dao.updateRegister(newId?.toInt() ?: 0, imcResult, Date())
+                            Log.i("Update successfully", "yes")
+                            openListActivity()
+                            return@Thread
+                        }
+
                         dao.insert(Calc(type = "imc", res = imcResult))
 
                         runOnUiThread {

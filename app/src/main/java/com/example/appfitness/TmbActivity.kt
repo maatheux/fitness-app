@@ -4,12 +4,14 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.inputmethod.InputMethodManager
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import com.example.appfitness.model.Calc
+import java.util.*
 
 class TmbActivity : AppCompatActivity() {
 
@@ -54,8 +56,20 @@ class TmbActivity : AppCompatActivity() {
                 }
                 setNegativeButton(R.string.save) {dialog, wich ->
                     Thread {
+
+                        val isUpdate = intent?.extras?.getString("Is Update")
+                        val newId = intent?.extras?.getString("Id")
+
                         val app = application as App
                         val dao = app.db.calcDao()
+
+                        isUpdate?.let {
+                            dao.updateRegister(newId?.toInt() ?: 0, result, Date())
+                            Log.i("Update successfully", "yes")
+                            openListActivity()
+                            return@Thread
+                        }
+
                         dao.insert(Calc(type = "tmb", res = result))
 
                         runOnUiThread {

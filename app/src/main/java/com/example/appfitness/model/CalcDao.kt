@@ -4,6 +4,7 @@ import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
+import java.util.*
 
 @Dao
 interface CalcDao {
@@ -16,6 +17,9 @@ interface CalcDao {
 
     @Query("DELETE FROM Calc WHERE id = :id")
     fun deleteRegister(id: Int)
+
+    @Query("UPDATE Calc SET res = :res, created_date = :date WHERE id = :id")
+    fun updateRegister(id: Int, res: Double, date: Date)
 
     //Delete - @Delete
     //Update - @Update

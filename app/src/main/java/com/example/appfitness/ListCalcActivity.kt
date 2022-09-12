@@ -25,11 +25,27 @@ class ListCalcActivity : AppCompatActivity() {
         setContentView(R.layout.activity_list_calc)
 
         val result = mutableListOf<Calc>()
-        val adapter = ListCalcAdapter(result) { id: Int, res: Double ->
+        val adapter = ListCalcAdapter(result) { id: Int, res: Double, type: String ->
             AlertDialog.Builder(this).apply {
                 setTitle(getString(R.string.resultOptionDialogTitle))
                 setMessage(getString(R.string.resultOptionDialogMessage, res))
-                setPositiveButton(R.string.editText) {dialog, which ->}
+                setPositiveButton(R.string.editText) {dialog, which ->
+                    when (type) {
+                        "imc" -> {
+                            val updateIntent = Intent(this@ListCalcActivity, ImcActivity::class.java)
+                            updateIntent.putExtra("Id", "$id")
+                            updateIntent.putExtra("Is Update", "Yes")
+                            startActivity(updateIntent)
+                        }
+                        "tmb" -> {
+                            val updateIntent = Intent(this@ListCalcActivity, TmbActivity::class.java)
+                            updateIntent.putExtra("Id", "$id")
+                            updateIntent.putExtra("Is Update", "Yes")
+                            startActivity(updateIntent)
+                        }
+                        else -> startActivity(Intent(this@ListCalcActivity, MainActivity::class.java))
+                    }
+                }
                 setNegativeButton(R.string.deleteText) {dialog, which ->
                     Thread {
                         val app = application as App
@@ -42,6 +58,9 @@ class ListCalcActivity : AppCompatActivity() {
                             Toast.makeText(this@ListCalcActivity, "Registro deletado!", Toast.LENGTH_SHORT).show()
                         }
                     }.start()
+                }
+                setNeutralButton("Fechar") { dialog, which ->
+                    dialog.cancel()
                 }
                 create()
                 show()
@@ -80,7 +99,7 @@ class ListCalcActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
-    private inner class ListCalcAdapter(private val calcItems : List<Calc>, private val onItemLongClickListener: (Int, Double) -> Unit ) : RecyclerView.Adapter<ListCalcAdapter.ListCalcViewHolder>() {
+    private inner class ListCalcAdapter(private val calcItems : List<Calc>, private val onItemLongClickListener: (Int, Double, String) -> Unit ) : RecyclerView.Adapter<ListCalcAdapter.ListCalcViewHolder>() {
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListCalcViewHolder {
             val view = layoutInflater.inflate(android.R.layout.simple_list_item_1, parent, false)
@@ -110,7 +129,7 @@ class ListCalcActivity : AppCompatActivity() {
                 tv.background = ContextCompat.getDrawable(this@ListCalcActivity, R.drawable.result_style_bg)
 
                 tv.setOnLongClickListener {
-                    onItemLongClickListener.invoke(item.id, item.res)
+                    onItemLongClickListener.invoke(item.id, item.res, item.type)
                     return@setOnLongClickListener true
                 }
 
