@@ -36,6 +36,34 @@ class MainActivity : AppCompatActivity() {
                 textStringId = R.string.label_tmb
             )
         )
+        mainItems.add(
+            MainItem(
+                id = 3,
+                drawableId = R.drawable.ic_baseline_directions_bike_24,
+                textStringId = R.string.label_activity
+            )
+        )
+        mainItems.add(
+            MainItem(
+                id = 4,
+                drawableId = R.drawable.ic_baseline_food_bank_24,
+                textStringId = R.string.label_food
+            )
+        )
+        mainItems.add(
+            MainItem(
+                id = 5,
+                drawableId = R.drawable.ic_baseline_timer_24,
+                textStringId = R.string.label_timer
+            )
+        )
+        mainItems.add(
+            MainItem(
+                id = 6,
+                drawableId = R.drawable.ic_baseline_timeline_24,
+                textStringId = R.string.label_indicators
+            )
+        )
 
         val adapter = MainAdapter(mainItems) { id: Int ->
                 when(id) {

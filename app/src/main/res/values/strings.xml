@@ -30,4 +30,8 @@
     <string name="resultOptionDialogMessage">"Resultado: %1$.2f"</string>
     <string name="editText">Editar</string>
     <string name="deleteText">Deletar</string>
+    <string name="label_activity">Atividades</string>
+    <string name="label_food">Alimentação</string>
+    <string name="label_timer">Cronômetro</string>
+    <string name="label_indicators">Indicadores</string>
 </resources>

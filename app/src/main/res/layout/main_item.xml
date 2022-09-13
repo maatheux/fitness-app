@@ -3,14 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="250dp" >
+    android:layout_height="200dp" >
 
     <LinearLayout
         android:id="@+id/item_container_imc"
-        android:layout_width="90dp"
-        android:layout_height="90dp"
+        android:layout_width="95dp"
+        android:layout_height="95dp"
         android:orientation="vertical"
-        android:paddingHorizontal="12dp"
+        android:paddingHorizontal="5dp"
         android:paddingVertical="10dp"
         android:gravity="center"
         android:background="@drawable/main_activity_button_rounded"
@@ -30,7 +30,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/white"
-            android:textSize="18sp"
             tools:text="@string/label_imc" />
 
     </LinearLayout>
